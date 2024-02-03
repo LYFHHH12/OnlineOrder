@@ -4,22 +4,29 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
+
 group = 'com.laioffer'
 version = '0.0.1-SNAPSHOT'
+
 
 java {
     sourceCompatibility = '17'
 }
 
+
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.postgresql:postgresql:42.6.0'
     implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.+'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -28,6 +35,7 @@ dependencies {
 tasks.named('bootBuildImage') {
     builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()

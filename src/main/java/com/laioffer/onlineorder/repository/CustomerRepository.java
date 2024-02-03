@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface CustomerRepository extends ListCrudRepository<CustomerEntity, Long> {
 
-    //根据id query
+
     List<CustomerEntity> findByFirstName(String firstName);
 
 
@@ -25,4 +25,9 @@ public interface CustomerRepository extends ListCrudRepository<CustomerEntity, L
     @Modifying
     @Query("UPDATE customers SET first_name = :firstName, last_name = :lastName WHERE id = :id")
     void updateNameById(long id, String firstName, String lastName);
+
+
+    @Modifying
+    @Query("UPDATE customers SET first_name = :firstName, last_name = :lastName WHERE email = :email")
+    void updateNameByEmail(String email, String firstName, String lastName);
 }
